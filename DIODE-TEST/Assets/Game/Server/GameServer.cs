@@ -12,6 +12,8 @@ public class GameServer : MonoBehaviour {
     {
         map = new MapServer(31, 31);
         unitList= new Dictionary<PlayerServer, List<UnitServer>>();
+        players = new List<PlayerServer>();
+        Debug.Log("Server Start");
         for(int i = 0; i < numPlayers; i++)
         {
             PlayerServer player = new PlayerServer(i);
@@ -19,7 +21,7 @@ public class GameServer : MonoBehaviour {
             players.Add(player);
             for(int u = 0; u < 5; u++)
             {
-                units.Add(new UnitServer(u, new Vector2(14+u,16), 1, 1, 2, player));
+                units.Add(new UnitServer(u, new Vector2(14+u,16-2*i), 1, 1, 2, player));
             }
             unitList[player] = units;
         }
@@ -28,11 +30,17 @@ public class GameServer : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
     }
-    public string read(string message)
+    public List<UnitServer> getUnits(int playerId)
     {
-
-        return "";
+        for(int i=0;i<players.Count;i++)
+        {
+            PlayerServer p = players[i];
+            if (p.playerId == playerId)
+            {
+                return unitList[p];
+            }
+        }
+        return null;
     }
 }

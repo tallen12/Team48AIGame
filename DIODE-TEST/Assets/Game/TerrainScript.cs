@@ -5,6 +5,7 @@ using System;
 public class TerrainScript : MonoBehaviour
 {
     public UnitBehavor unit;
+    public MapScript map;
     public bool check;
     private double _x;
     private double _y;
@@ -29,10 +30,6 @@ public class TerrainScript : MonoBehaviour
     }
     void OnMouseDown()
     {
-        Debug.Log(String.Format("X: {0} Y: {1}", x, y));
-        if (check)
-        {
-            unit.move(transform.position.x,transform.position.y);
-        }
+        map.clicked(this);
     }
 }

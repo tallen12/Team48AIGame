@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Assets\Game\CameraMove.cs" />
     <Compile Include="Assets\Game\MapScript.cs" />
+    <Compile Include="Assets\Game\PlayerScript.cs" />
     <Compile Include="Assets\Game\Server\CombatModule.cs" />
     <Compile Include="Assets\Game\Server\GameServer.cs" />
     <Compile Include="Assets\Game\Server\MapServer.cs" />

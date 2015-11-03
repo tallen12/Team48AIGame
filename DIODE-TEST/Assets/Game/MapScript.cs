@@ -3,6 +3,15 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 public class MapScript : MonoBehaviour {
+    private TerrainScript _clicked;
+    public PlayerScript player;
+    public TerrainScript Clicked
+    {
+        get
+        {
+            return _clicked;
+        }
+    }
     public int Size
     {
         get { return 31; }
@@ -24,6 +33,7 @@ public class MapScript : MonoBehaviour {
             {
                 GameObject go = GameObject.Instantiate(Resources.Load("Terrain")) as GameObject;
                 TerrainScript script = go.GetComponent<TerrainScript>();
+                script.map = this;
                 script.init(x,y);
                 go.transform.position = new Vector3((x-(Size - 1)/2)*scale, (y - (Size - 1) / 2) * scale, 1);
                 go.transform.parent = gameObject.transform;
@@ -63,5 +73,10 @@ public class MapScript : MonoBehaviour {
             }
         }
         return output;
+    }
+    public void clicked(TerrainScript script)
+    {
+        _clicked = script;
+        player.terrainClick();
     }
 }
